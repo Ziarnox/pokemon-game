@@ -19,7 +19,9 @@ function App() {
 
   return (
     <div className="App">
-      <LocationsContainer locations={locations}/>
+      {
+        locations.length > 0 && <LocationsContainer locations={locations}/>
+      }
     </div>
   );
 }

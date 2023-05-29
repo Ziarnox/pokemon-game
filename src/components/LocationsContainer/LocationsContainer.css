@@ -1,0 +1,8 @@
+.locations_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    gap: 1em;
+}
+

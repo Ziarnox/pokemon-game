@@ -1,12 +1,15 @@
 import './LocationsContainer.css'
 import Location from '../Location/Location';
 
-function LocationsContainer(locations) {
+function LocationsContainer({ locations }) {
+
     return (
         <>
-            {
-                locations.map(element => <Location name={element.name} />)
-            }
+            <div className='locations_container'>
+                {
+                    locations.map(element => <Location name={element.name} />)
+                }
+            </div>
         </>
     )
 }
