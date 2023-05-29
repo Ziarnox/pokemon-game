@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import LocationsContainer from './components/LocationsContainer/LocationsContainer';
 import EncounterCard from './components/EncounterCard/EncounterCard';
+import Location from './components/Location/Location';
 
 
 function App() {
   const [locations, setLocations] = useState([]);
   const [page, setPage] = useState("main");
+  const [currentLocation, setCurrentLocation] = useState({});
 
   useEffect(() => {
     getLocations().catch(error => console.error("I am a teapot"));
@@ -21,14 +22,25 @@ function App() {
   const managePageState = () => {
     switch (page) {
       case "main":
-        return locations.length > 0 && <LocationsContainer locations={locations} setPage={setPage}/>;
+        return (
+          <div className='locations_container flex-row-center-center'>
+            {
+              locations.map((element, index) =>
+                <Location key={"location" + index}
+                  name={element.name}
+                  setPage={setPage}
+                  url={element.url}
+                  setCurrentLocation={setCurrentLocation} />)
+            }
+          </div>);
       case "encounter":
-        return <EncounterCard setPage={setPage}/>;
+        console.log(currentLocation);
+        return <EncounterCard setPage={setPage} />;
     }
   }
 
   return (
-    <div className="App">
+    <div className="App flex-row-center-center">
       {managePageState()}
     </div>
   );

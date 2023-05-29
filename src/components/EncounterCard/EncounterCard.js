@@ -8,8 +8,8 @@ function EncounterCard({ setPage }) {
 
     return (
         <>
-            <div className='encounter_card'>
-                <div className='pokemon_data'>
+            <div className='encounter_card flex-row-center-center'>
+                <div className='pokemon_data flex-row-center-center'>
                     <div className='stats'>
                         <ul>
                             <li>HP: 21</li>
