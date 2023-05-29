@@ -1,9 +1,10 @@
 import './Location.css'
 
-function Location({name}) {
+function Location({name, setPage}) {
+    const locationName = name[0].toUpperCase() + name.replaceAll("-"," ").substring(1,);
 
     return (
-        <button className='location'>{name[0].toUpperCase() + name.replaceAll("-"," ").substring(1,)}</button>
+        <button className='location' onClick={() => setPage("encounter")}>{locationName}</button>
     )
 }
 

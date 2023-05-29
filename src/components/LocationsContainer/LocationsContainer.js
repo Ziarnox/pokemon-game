@@ -1,13 +1,13 @@
 import './LocationsContainer.css'
 import Location from '../Location/Location';
 
-function LocationsContainer({ locations }) {
+function LocationsContainer({ locations, setPage }) {
 
     return (
         <>
             <div className='locations_container'>
                 {
-                    locations.map(element => <Location name={element.name} />)
+                    locations.map((element, index) => <Location key={"location" + index} name={element.name} setPage={setPage}/>)
                 }
             </div>
         </>
