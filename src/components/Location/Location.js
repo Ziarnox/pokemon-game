@@ -6,11 +6,12 @@ function Location({ name, setPage, url, setCurrentLocation }) {
     async function getAreaData() {
         const modifiedURL = url.replace("location","location-area");
         const response = await fetch(modifiedURL);
-        return await response.json();
+        const data = await response.json();
+        setCurrentLocation(data);
     }
 
     const handleEncounterButton = () => {
-        setCurrentLocation(getAreaData());
+        getAreaData();
         setPage("encounter");
     }
 
