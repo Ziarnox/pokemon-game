@@ -1,0 +1,10 @@
+.PokedexDisplay{
+    padding: 7px;
+    background-color: greenyellow;
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
