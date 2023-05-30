@@ -7,17 +7,20 @@ import Location from './components/Location/Location';
 function App() {
   const [locations, setLocations] = useState([]);
   const [page, setPage] = useState("main");
-  const [currentLocation, setCurrentLocation] = useState({});
+  const [pokemonURL, setPokemonURL] = useState(null);
+  const [hasPokemons, setHasPokemons] = useState(null);
+
 
   useEffect(() => {
-    getLocations().catch(error => console.error("I am a teapot"));
+    async function getLocations() {
+      const response = await fetch("https://pokeapi.co/api/v2/location");
+      const data = await response.json();
+      setLocations(data.results);
+    };
+
+    getLocations();
   }, [])
 
-  async function getLocations() {
-    const response = await fetch("https://pokeapi.co/api/v2/location");
-    const data = await response.json();
-    setLocations(data.results);
-  }
 
   const managePageState = () => {
     switch (page) {
@@ -30,12 +33,13 @@ function App() {
                   name={element.name}
                   setPage={setPage}
                   url={element.url}
-                  setCurrentLocation={setCurrentLocation} />)
+                  setPokemonURL={setPokemonURL}
+                  setHasPokemons={setHasPokemons}
+                   />)
             }
           </div>);
       case "encounter":
-        console.log(currentLocation);
-        return <EncounterCard setPage={setPage} />;
+        return <EncounterCard setPage={setPage} pokemonURL={pokemonURL} hasPokemons={hasPokemons}/>;
     }
   }
 
