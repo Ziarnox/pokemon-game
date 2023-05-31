@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import './EncounterCard.css';
 
-function EncounterCard({ setPage, pokemonURL, hasPokemons, pokemonDetails, setPokemonDetails }) {
+function EncounterCard({ setPage, pokemonURL, hasPokemons, enemyDetails, setEnemyDetails }) {
 
     useEffect(() => {
         async function getPokemonStats() {
             const response = await fetch(pokemonURL);
             const data = await response.json();
-            setPokemonDetails(data);
+            setEnemyDetails(data);
         }
 
         getPokemonStats();
@@ -15,7 +15,7 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons, pokemonDetails, setPo
 
     const returnToMainPage = () => {
         setPage("main");
-        setPokemonDetails(null);
+        setEnemyDetails(null);
     }
 
     const moveToBattleScreen = () => {
@@ -25,7 +25,7 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons, pokemonDetails, setPo
     return (
         <>
             {hasPokemons ?
-                (pokemonDetails && <div className='encounter_card flex-row-center-center'>
+                (enemyDetails && <div className='encounter_card flex-row-center-center'>
                     <div className='top-of-pokedex flex-row-center-center'>
                         <div className='blue-circle' />
                         <div className='red-circle' />
@@ -33,16 +33,16 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons, pokemonDetails, setPo
                         <div className='green-circle' />
                     </div>
                     <div className='pokemon_data flex-row-center-center'>
-                        <div className='pokemon-name'>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.substring(1,)}</div>
+                        <div className='pokemon-name'>{enemyDetails.name[0].toUpperCase() + enemyDetails.name.substring(1,)}</div>
                         <div className='details flex-row-center-center'>
                             <div className='stats'>
                                 <ul>
-                                    <li>HP: {pokemonDetails.stats[0]["base_stat"]}</li>
-                                    <li>Attack: {pokemonDetails.stats[1]["base_stat"]}</li>
-                                    <li>Def: {pokemonDetails.stats[2]["base_stat"]}</li>
+                                    <li>HP: {enemyDetails.stats[0]["base_stat"]}</li>
+                                    <li>Attack: {enemyDetails.stats[1]["base_stat"]}</li>
+                                    <li>Def: {enemyDetails.stats[2]["base_stat"]}</li>
                                 </ul>
                             </div>
-                            <img src={pokemonDetails.sprites["front_default"]} alt={pokemonDetails.name} />
+                            <img src={enemyDetails.sprites["front_default"]} alt={enemyDetails.name} />
                         </div>
                     </div>
                     <button className='battle_button' onClick={moveToBattleScreen}>Battle</button>
