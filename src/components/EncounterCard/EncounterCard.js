@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './EncounterCard.css';
 
-function EncounterCard({ setPage, pokemonURL, hasPokemons }) {
-    const [pokemonDetails, setPokemonDetails] = useState(null);
+function EncounterCard({ setPage, pokemonURL, hasPokemons, pokemonDetails, setPokemonDetails }) {
 
     useEffect(() => {
         async function getPokemonStats() {
@@ -16,6 +15,11 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons }) {
 
     const returnToMainPage = () => {
         setPage("main");
+        setPokemonDetails(null);
+    }
+
+    const moveToBattleScreen = () => {
+        setPage("battle");
     }
 
     return (
@@ -41,7 +45,7 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons }) {
                             <img src={pokemonDetails.sprites["front_default"]} alt={pokemonDetails.name} />
                         </div>
                     </div>
-                    <button className='battle_button'>Battle</button>
+                    <button className='battle_button' onClick={moveToBattleScreen}>Battle</button>
                     <button className='back_button' onClick={returnToMainPage}>Run</button>
                 </div>)
                 :
