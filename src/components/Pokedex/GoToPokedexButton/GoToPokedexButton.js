@@ -1,8 +1,8 @@
 import './GoToPokedexButton.css'
 
-function GoToPokedexButton ({setPage}) {
+function GoToPokedexButton ({setPage, target}) {
 const handlePokedexButton = () => {
-    setPage("Pokedex")
+    setPage(target)
 }
 
     return (

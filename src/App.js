@@ -5,6 +5,8 @@ import Location from './components/Location/Location';
 import GoToPokedexButton from './components/Pokedex/GoToPokedexButton/GoToPokedexButton';
 import PokedexDisplay from './components/Pokedex/PokedexDisplay/PokedexDisplay';
 import BattleScreen from './components/BattleScreen/BattleScreen';
+import BackToMapButton from './components/Pokedex/BackToMapButton/BackToMapButton';
+import BackToBattleButton from './components/Pokedex/BackToBattleButton/BackToBattleButton';
 
 
 function App() {
@@ -45,7 +47,7 @@ function App() {
           <div className='locations_container flex-row-center-center'>
             {
               <>
-                <GoToPokedexButton setPage={setPage} />
+                <GoToPokedexButton setPage={setPage} target="Pokedex" />
                 {locations.map((element, index) =>
                   <Location key={"location" + index}
                     name={element.name}
@@ -58,19 +60,36 @@ function App() {
             }
           </div>);
       case "encounter":
-        return <EncounterCard setPage={setPage}
-          pokemonURL={pokemonURL}
-          hasPokemons={hasPokemons}
-          pokemonDetails={pokemonDetails}
-          setPokemonDetails={setPokemonDetails} />;
+        return (
+          <>
+            <GoToPokedexButton setPage={setPage} target="encounterPokedex"/>
+            <EncounterCard setPage={setPage}
+              pokemonURL={pokemonURL}
+              hasPokemons={hasPokemons}
+              pokemonDetails={pokemonDetails}
+              setPokemonDetails={setPokemonDetails} />
+          </>
+        );
       case "Pokedex":
         return (
           <>
+          <BackToMapButton setPage={setPage} />
+            {ownedPokemons.map(element => <PokedexDisplay pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
+          </>
+        )
+      case "encounterPokedex":
+        return (
+          <>
+          <BackToBattleButton setPage={setPage} />
             {ownedPokemons.map(element => <PokedexDisplay pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
           </>
         )
       case "battle":
-        return <BattleScreen pokemonDetails={pokemonDetails} setPage={setPage} setPokemonDetails={setPokemonDetails}/>;
+        return (
+          <>
+            <BattleScreen pokemonDetails={pokemonDetails} setPage={setPage} setPokemonDetails={setPokemonDetails} />
+          </>
+        );
     }
   }
 
