@@ -24,14 +24,14 @@
 margin: auto;
 }
 
-.win_screen{
+.win_screen, .lost_screen{
   flex-direction: column;
   gap: 1em;
   border: 5px solid black;
   border-radius: 10%;
   background-color: rgba(78, 78, 78, 0.473);
   padding: 20px;
-  color: rgb(251, 255, 0);
+  color: rgb(255, 255, 255);
 }
 
 .goToMap{

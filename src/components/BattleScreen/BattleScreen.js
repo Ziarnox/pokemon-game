@@ -40,38 +40,40 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
         setOwnedPokemons([...ownedPokemons,...[objectToPush]]);
     }
 
-    const handleAttackButton = () => {
-
-        const handlePlayerTurn = () => {
-            if (isPlayerTurn) {
-                if (playerStats.hp > 0 && enemyStats.hp > 0) {
-                    setEnemyStats(Object.assign(enemyStats, { hp: enemyStats.hp - playerAttack }));
-                    setIsPlayerTurn(false);
-                    if (enemyStats.hp <= 0) {
-                        setIsPlayerTurn(true);
-                        setEnemyStats(Object.assign(enemyStats, { hp: 0 }));
-                        setTimeout(() => {
-                            setPage("won_battle")
-                            addPokemonToCollection();
-                        }, 500);
-                    }
+    const handlePlayerTurn = () => {
+        if (isPlayerTurn) {
+            if (playerStats.hp > 0 && enemyStats.hp > 0) {
+                setEnemyStats(Object.assign(enemyStats, { hp: enemyStats.hp - playerAttack }));
+                setIsPlayerTurn(false);
+                if (enemyStats.hp <= 0) {
+                    setIsPlayerTurn(true);
+                    setEnemyStats(Object.assign(enemyStats, { hp: 0 }));
+                    setTimeout(() => {
+                        setPage("won_battle")
+                        addPokemonToCollection();
+                    }, 500);
                 }
             }
         }
+    }
 
-        const handleEnemyTurn = () => {
-            setTimeout(() => {
-                if (playerStats.hp > 0 && enemyStats.hp > 0) {
-                    setPlayerStats(Object.assign(playerStats, { hp: playerStats.hp - enemyAttack }));
-                    setIsPlayerTurn(true);
-                    if (playerStats.hp <= 0) {
-                        setIsPlayerTurn(false);
-                        setPlayerStats(Object.assign(playerStats, { hp: 0 }));
-                    }
+    const handleEnemyTurn = () => {
+        setTimeout(() => {
+            if (playerStats.hp > 0 && enemyStats.hp > 0) {
+                setPlayerStats(Object.assign(playerStats, { hp: playerStats.hp - enemyAttack }));
+                setIsPlayerTurn(true);
+                if (playerStats.hp <= 0) {
+                    setIsPlayerTurn(false);
+                    setPlayerStats(Object.assign(playerStats, { hp: 0 }));
+                    setTimeout(() => {
+                        setPage("lost_battle");
+                    }, 500);
                 }
-            }, 1000);
-        }
+            }
+        }, 1000);
+    }
 
+    const handleAttackButton = () => {
         setAttackValues();
         handlePlayerTurn();
         handleEnemyTurn();

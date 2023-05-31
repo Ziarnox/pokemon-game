@@ -105,7 +105,15 @@ function App() {
             <img className='battle-picture' src={enemyDetails.sprites["front_default"]} alt={enemyDetails.name} />
             <button className='back_button' onClick={returnToMainPage}>Back</button>
           </div>)
-
+      case "lost_battle":
+        return (
+          <div className='lost_screen flex-row-center-center'>
+            <h1>You lost the battle!</h1>
+            <button className='back_button' onClick={returnToMainPage}>Back</button>
+          </div>
+        )
+        default:
+          break;
     }
   }
 

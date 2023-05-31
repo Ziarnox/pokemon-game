@@ -1,6 +1,6 @@
 import './Location.css'
 
-function Location({ name, setPage, url, setPokemonURL, setHasPokemons }) {
+function Location({ name, setPage, url, setPokemonURL, setHasPokemons}) {
     const locationName = name[0].toUpperCase() + name.replaceAll("-", " ").substring(1,);
 
     async function loadEncounterData() {
@@ -8,7 +8,6 @@ function Location({ name, setPage, url, setPokemonURL, setHasPokemons }) {
         const response = await fetch(modifiedURL);
         const data = await response.json();
 
-        //dodać warunek dla pokemonów posiadanych w pokedexie
         if (data["pokemon_encounters"].length > 0) {
             const encountersArray = data["pokemon_encounters"];
             const randomNumber = Math.floor(Math.random() * encountersArray.length);
