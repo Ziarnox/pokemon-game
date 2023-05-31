@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.dimon-container{
+  flex-wrap: wrap;
+  overflow: auto;
+  gap: 10px;
+  max-height: 980px;
+}
+
 .App {
   text-align: center;
 }
@@ -11,6 +18,10 @@
 .locations_container{
   flex-direction: column;
   gap: 1em;
+}
+
+.pokedexDisplay{
+margin: auto;
 }
 
 .win_screen{
@@ -23,3 +34,10 @@
   color: rgb(251, 255, 0);
 }
 
+.goToMap{
+  width: 100%;
+}
+
+.goToBattle{
+  width: 100%;
+}

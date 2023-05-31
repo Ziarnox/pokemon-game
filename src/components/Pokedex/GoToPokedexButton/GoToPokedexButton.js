@@ -1,13 +1,14 @@
 import './GoToPokedexButton.css'
+import pokeball from "./pokeball.png"
 
-function GoToPokedexButton ({setPage}) {
+function GoToPokedexButton ({setPage, target}) {
 const handlePokedexButton = () => {
-    setPage("Pokedex")
+    setPage(target)
 }
 
     return (
         <>
-        <button className="goToPokedex" onClick={handlePokedexButton}>Go to Pokedex</button>
+        <button className="goToPokedex" onClick={handlePokedexButton}><img src={pokeball}></img></button>
         </>
     )
 }
