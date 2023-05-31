@@ -1,7 +1,9 @@
 .flex-row-center-center{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
+  gap: 10px;
+  max-height: 980px;
 }
 
 .App {
@@ -13,5 +15,14 @@
   gap: 1em;
 }
 
+.pokedexDisplay{
+margin: auto;
+}
 
+.goToMap{
+  width: 100%;
+}
 
+.goToBattle{
+  width: 100%;
+}

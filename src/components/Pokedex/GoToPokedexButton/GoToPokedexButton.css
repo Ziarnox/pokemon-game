@@ -1,0 +1,8 @@
+.goToPokedex{
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
