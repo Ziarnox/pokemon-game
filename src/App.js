@@ -76,8 +76,9 @@ function App() {
               pokemonURL={pokemonURL}
               hasPokemons={hasPokemons}
               enemyDetails={enemyDetails}
-              setEnemyDetails={setEnemyDetails} />
-                          <div className='pokedex-bar flex-row-center-center'>
+              setEnemyDetails={setEnemyDetails}
+              returnToMainPage={returnToMainPage} />
+            <div className='pokedex-bar flex-row-center-center'>
               <GoToPokedexButton setPage={setPage} target="encounterPokedex" />
               <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
             </div>
@@ -112,7 +113,8 @@ function App() {
           selectedPokemon={selectedPokemon}
           setOwnedPokemons={setOwnedPokemons}
           ownedPokemons={ownedPokemons}
-          setSelectedPokemon={setSelectedPokemon} />;
+          setSelectedPokemon={setSelectedPokemon}
+          returnToMainPage={returnToMainPage} />;
       case "won_battle":
         return (
           <div className='win_screen flex-row-center-center'>

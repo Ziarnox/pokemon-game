@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './EncounterCard.css';
 
-function EncounterCard({ setPage, pokemonURL, hasPokemons, enemyDetails, setEnemyDetails }) {
+function EncounterCard({ setPage, pokemonURL, hasPokemons, enemyDetails, setEnemyDetails, returnToMainPage }) {
 
     useEffect(() => {
         async function getPokemonStats() {
@@ -11,12 +11,7 @@ function EncounterCard({ setPage, pokemonURL, hasPokemons, enemyDetails, setEnem
         }
 
         getPokemonStats();
-    }, [])
-
-    const returnToMainPage = () => {
-        setPage("main");
-        setEnemyDetails(null);
-    }
+    }, [pokemonURL, setEnemyDetails])
 
     const moveToBattleScreen = () => {
         setPage("battle");

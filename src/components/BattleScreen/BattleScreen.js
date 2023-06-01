@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './BattleScreen.css';
 import ultraDimonImg from '../../assets/UltraDimon.png';
 
-function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon, setOwnedPokemons, ownedPokemons, setSelectedPokemon }) {
+function BattleScreen({ enemyDetails, setPage, selectedPokemon, setOwnedPokemons, ownedPokemons, returnToMainPage }) {
     const [playerStats, setPlayerStats] = useState(Object.assign({}, selectedPokemon.stats));
     const [enemyStats, setEnemyStats] = useState({
         hp: enemyDetails.stats[0]["base_stat"],
@@ -12,11 +12,6 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
     const [playerAttack, setPlayerAttack] = useState(calculateAttackValue(playerStats.attack, playerStats.defense));
     const [enemyAttack, setEnemyAttack] = useState(calculateAttackValue(enemyStats.attack, enemyStats.defense));
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-
-    const returnToMainPage = () => {
-        setPage("main");
-        setEnemyDetails(null);
-    }
 
     function calculateAttackValue(attack, defense) {
         const randomNumber = Math.random() * (255 - 217) + 217;
@@ -103,7 +98,6 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
         }
     }
 
-    calculateAttackValue();
     return (
         <div className='battle-screen flex-row-center-center'>
             <div className='header-text'>Pokemon Battle</div>

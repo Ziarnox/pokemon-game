@@ -4,7 +4,6 @@ function PokedexDisplay({pokemon, setSelectedPokemon}) {
 
 const handlePokemonButton = () => {
     setSelectedPokemon(pokemon);
-    console.log(pokemon);
 }
 
     return (
