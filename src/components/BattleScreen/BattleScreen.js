@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './BattleScreen.css';
 
-function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon, setOwnedPokemons, ownedPokemons }) {
+function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon, setOwnedPokemons, ownedPokemons, setSelectedPokemon }) {
     const [playerStats, setPlayerStats] = useState(Object.assign({}, selectedPokemon.stats));
     const [enemyStats, setEnemyStats] = useState({
         hp: enemyDetails.stats[0]["base_stat"],
@@ -36,9 +36,27 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
                 attack: enemyStats.attack,
                 defense: enemyStats.defense
             },
-            img: enemyDetails.sprites["front_default"]
+            img: enemyDetails.sprites["front_default"],
+            level: 1
         }
         setOwnedPokemons([...ownedPokemons, ...[objectToPush]]);
+    }
+
+    const lvlUP = () => {
+        const index = ownedPokemons.findIndex(element => element.name === selectedPokemon.name);
+        const copiedPokemonsArr = [...ownedPokemons];
+        console.log(selectedPokemon.stats.hp, selectedPokemon.stats.hp * 1.1, Math.round(selectedPokemon.stats.hp * 1.1))
+        copiedPokemonsArr[index] = {
+            name: selectedPokemon.name,
+            stats: {
+                hp: Math.round(selectedPokemon.stats.hp * 1.1),
+                attack: Math.round(selectedPokemon.stats.attack * 1.1),
+                defense: Math.round(selectedPokemon.stats.defense * 1.1)
+            },
+            img: selectedPokemon.img,
+            level: selectedPokemon.level ++
+        } 
+        setOwnedPokemons(copiedPokemonsArr);
     }
 
     const handlePlayerTurn = () => {
@@ -52,6 +70,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
                     setTimeout(() => {
                         setPage("won_battle")
                         addPokemonToCollection();
+                        lvlUP();
                     }, 500);
                 }
             }
@@ -96,12 +115,14 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
             <div className='pokemons-fight-details flex-row-center-center'>
                 <div className='pokemon-details flex-row-center-center'>
                     <div className='pokemon-battle-name'>{selectedPokemon.name}</div>
+                    <div className='pokemon-battle-level'>Lvl {selectedPokemon.level}</div>
                     <img className='battle-picture' src={selectedPokemon.img} alt={selectedPokemon.name} />
                     <div className='health-bar'>{playerStats.hp}/{selectedPokemon.stats.hp} HP</div>
                 </div>
                 <div className='versus-text'>Vs</div>
                 <div className='pokemon-details flex-row-center-center'>
                     <div className='pokemon-battle-name'>{enemyDetails.name[0].toUpperCase() + enemyDetails.name.substring(1,)}</div>
+                    <div className='pokemon-battle-level'>Lvl ???</div>
                     <img className='battle-picture' src={enemyDetails.sprites["front_default"]} alt={enemyDetails.name} />
                     <div className='health-bar'>{enemyStats.hp}/{enemyDetails.stats[0]["base_stat"]} HP</div>
                 </div>

@@ -24,7 +24,8 @@ function App() {
         attack: 50,
         defense: 50
       },
-      img: dimonImg
+      img: dimonImg,
+      level: 1
     }
   ]);
   const [selectedPokemon, setSelectedPokemon] = useState(ownedPokemons[0]);
@@ -108,7 +109,8 @@ function App() {
           setEnemyDetails={setEnemyDetails}
           selectedPokemon={selectedPokemon}
           setOwnedPokemons={setOwnedPokemons}
-          ownedPokemons={ownedPokemons} />;
+          ownedPokemons={ownedPokemons}
+          setSelectedPokemon={setSelectedPokemon} />;
       case "won_battle":
         return (
           <div className='win_screen flex-row-center-center'>

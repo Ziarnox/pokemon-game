@@ -12,6 +12,7 @@ const handlePokemonButton = () => {
             <ul>
                 <li>
             <p>Name: {pokemon.name}</p>
+            <p>Level: {pokemon.level}</p>
             <p>Health: {pokemon.stats.hp}</p>
             <p>Attack: {pokemon.stats.attack}</p>
             <p>Defense: {pokemon.stats.defense}</p>

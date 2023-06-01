@@ -108,3 +108,9 @@
     flex-direction: row;
     gap: 1em;
 }
+
+.pokemon-battle-level{
+    font-size: 2em;
+    font-weight: 600;
+    color: white;
+}
