@@ -11,6 +11,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
     const [playerAttack, setPlayerAttack] = useState(calculateAttackValue(playerStats.attack, playerStats.defense));
     const [enemyAttack, setEnemyAttack] = useState(calculateAttackValue(enemyStats.attack, enemyStats.defense));
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
+    const [isAutoBattleOn, setIsAutoBattleOn] = useState(false);
 
     const returnToMainPage = () => {
         setPage("main");
@@ -37,7 +38,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
             },
             img: enemyDetails.sprites["front_default"]
         }
-        setOwnedPokemons([...ownedPokemons,...[objectToPush]]);
+        setOwnedPokemons([...ownedPokemons, ...[objectToPush]]);
     }
 
     const handlePlayerTurn = () => {
@@ -79,6 +80,15 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
         handleEnemyTurn();
     }
 
+    const handleAutoBattleButton = () => {
+        setIsAutoBattleOn(!isAutoBattleOn);
+        while (isAutoBattleOn && playerStats.hp > 0 && enemyStats.hp > 0) {
+            setAttackValues();
+            handlePlayerTurn();
+            handleEnemyTurn();
+        }
+    }
+
     calculateAttackValue();
     return (
         <div className='battle-screen flex-row-center-center'>
@@ -99,6 +109,12 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
             <div className='buttons flex-row-center-center'>
                 <button className='attack-button' onClick={handleAttackButton} disabled={isPlayerTurn === false}>Attack</button>
                 <button className='escape-button' onClick={returnToMainPage}>Escape</button>
+                {
+                    isAutoBattleOn
+                        ? <button className='autobattle-button' onClick={handleAutoBattleButton}>Turn auto-battle off</button>
+                        : <button className='autobattle-button' onClick={handleAutoBattleButton}>Turn auto-battle on</button>
+                }
+
             </div>
         </div>
     )

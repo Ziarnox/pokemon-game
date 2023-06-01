@@ -4,19 +4,51 @@
   align-items: center;
 }
 
-.dimon-container{
+.pokedex-page{
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 2em;
+  height: 100vh;
+  width: 90vw;
+  gap: 2em;
+}
+
+.pokemons-container{
+  padding: 2em;
   flex-wrap: wrap;
-  overflow: auto;
-  gap: 10px;
-  max-height: 980px;
+  background-color: rgba(61, 61, 61, 0.452);
+  border-radius: 25px;
+  gap: 1em;
 }
 
 .App {
   text-align: center;
 }
 
-.locations_container{
+.main_page{
   flex-direction: column;
+  gap: 3em;
+}
+
+.main-page-header, .pokedex-page > h1{
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 3em;
+  font-weight: 600;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 25px;
+  background-image: radial-gradient(rgba(255, 4, 4, 0.658),rgba(192, 0, 0, 0.644));
+  text-shadow: 2px 2px black;
+}
+
+.locations_container{
+  padding: 25px;
+  background-color: rgba(255, 4, 4, 0.452);
+  border-radius: 25px;
+  border: 5px solid rgb(255, 255, 255);
+  width: 60vw;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1em;
 }
 
@@ -34,10 +66,27 @@ margin: auto;
   color: rgb(255, 255, 255);
 }
 
-.goToMap{
-  width: 100%;
+img{
+  width: 15em;
+  height: 15em;
+  image-rendering: pixelated;
 }
 
-.goToBattle{
-  width: 100%;
+.current-pokemon-image{
+  padding: 10px;
+  position: absolute;
+  top: 11em;
+  left: 2em;
+  width: 6em;
+  height: 6em;
+  background-color: rgba(0, 0, 0, 0.527);
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+.pokedex-page > h1{
+  background-image: none;
+  background-color: rgba(0, 0, 0, 0.315);
+  border: none;
+  color: rgb(255, 166, 0);
 }

@@ -49,18 +49,22 @@ function App() {
     switch (page) {
       case "main":
         return (
-          <div className='locations_container flex-row-center-center'>
+          <div className='main_page flex-row-center-center'>
             {
               <>
                 <GoToPokedexButton setPage={setPage} target="Pokedex" />
-                {locations.map((element, index) =>
-                  <Location key={"location" + index}
-                    name={element.name}
-                    setPage={setPage}
-                    url={element.url}
-                    setPokemonURL={setPokemonURL}
-                    setHasPokemons={setHasPokemons}
-                  />)}
+                <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
+                <div className='main-page-header'>Pick Location</div>
+                <div className='locations_container flex-row-center-center'>
+                  {locations.map((element, index) =>
+                    <Location key={"location" + index}
+                      name={element.name}
+                      setPage={setPage}
+                      url={element.url}
+                      setPokemonURL={setPokemonURL}
+                      setHasPokemons={setHasPokemons}
+                    />)}
+                </div>
               </>
             }
           </div>);
@@ -68,6 +72,7 @@ function App() {
         return (
           <>
             <GoToPokedexButton setPage={setPage} target="encounterPokedex" />
+            <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
             <EncounterCard setPage={setPage}
               pokemonURL={pokemonURL}
               hasPokemons={hasPokemons}
@@ -77,16 +82,23 @@ function App() {
         );
       case "Pokedex":
         return (
-          <div className='dimon-container flex-row-center-center'>
+          <div className='pokedex-page flex-row-center-center'>
             <BackToMapButton setPage={setPage} />
-            {ownedPokemons.map((element, index) => <PokedexDisplay key={"pokemonID" + index} pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
+            <h1>Select your Pokemon</h1>
+            <div className='pokemons-container flex-row-center-center'>
+              {ownedPokemons.map((element, index) => <PokedexDisplay key={"pokemonID" + index} pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
+            </div>
           </div>
         )
       case "encounterPokedex":
         return (
           <>
-            <BackToBattleButton setPage={setPage} />
-            {ownedPokemons.map(element => <PokedexDisplay pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
+            <div className='pokedex-page flex-row-center-center'>
+              <BackToBattleButton setPage={setPage} />
+              <div className='pokemons-container flex-row-center-center'>
+                {ownedPokemons.map((element, index) => <PokedexDisplay key={"pokemonID" + index} pokemon={element} setSelectedPokemon={setSelectedPokemon} />)}
+              </div>
+            </div>
           </>
         )
       case "battle":
@@ -112,8 +124,8 @@ function App() {
             <button className='back_button' onClick={returnToMainPage}>Back</button>
           </div>
         )
-        default:
-          break;
+      default:
+        break;
     }
   }
 

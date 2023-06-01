@@ -3,10 +3,9 @@ import './PokedexDisplay.css'
 function PokedexDisplay({pokemon, setSelectedPokemon}) {
 
 const handlePokemonButton = () => {
-    setSelectedPokemon(pokemon)
-    console.log(pokemon)
+    setSelectedPokemon(pokemon);
+    console.log(pokemon);
 }
-
 
     return (
         <button className='pokedexDisplay' onClick={handlePokemonButton}>
@@ -18,7 +17,7 @@ const handlePokemonButton = () => {
             <p>Defense: {pokemon.stats.defense}</p>
             </li>
             </ul>
-            <img src={pokemon.img}></img>
+            <img src={pokemon.img} alt={pokemon.name}></img>
         </button>
     )
 }

@@ -19,10 +19,10 @@
     border-radius: 10%;
 }
 
-.attack-button{
+.escape-button, .autobattle-button, .attack-button{
     padding: 12px;
-    background-color: brown;
-    color: black;
+    color: white;
+    background-color:rgb(0, 0, 0);
     border: 1px solid black;
     font-weight: 600;
     font-size: 26px;
@@ -31,12 +31,22 @@
     box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.582);
 }
 
+.attack-button{
+    background-color: brown;
+    color: black;
+}
+
+.attack-button:active{
+    background-color: rgb(131, 32, 32);
+}
+
 .header-text{
     color: rgb(255, 187, 0);
     padding: 5px 15px;
     background-color: rgba(0, 0, 0, 0.26);
     border-radius: 25px;
     box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.582);
+    text-shadow: 5px 5px black
 }
 
 .versus-text, .header-text, .pokemon-battle-name{
@@ -47,6 +57,7 @@
 .versus-text{
     color: rgb(255, 255, 255);
     font-size: 9em;
+    text-shadow: 5px 5px black
 }
 
 .battle-picture{
@@ -58,7 +69,7 @@
     transition: 1s all 1s ease-out ;
 }
 
-.battle-picture:hover{
+.battle-picture-animation{
     transform: translateY(300%) rotate(360deg);
     opacity: 0;
 }
@@ -85,16 +96,12 @@
     color: white;
 }
 
-.escape-button{
-    padding: 12px;
-    color: white;
-    background-color:rgb(0, 0, 0);
-    border: 1px solid black;
-    font-weight: 600;
-    font-size: 26px;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.582);
+.autobattle-button{
+    background-color: rgb(0, 120, 218);
+}
+
+.autobattle-button:active{
+    background-color: rgb(0, 108, 196);
 }
 
 .buttons{
