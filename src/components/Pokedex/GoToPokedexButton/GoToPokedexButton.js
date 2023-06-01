@@ -1,5 +1,5 @@
 import './GoToPokedexButton.css'
-import pokeball from "./pokeball.png"
+import pokeball from "../../../assets/pokeball.png"
 
 function GoToPokedexButton({ setPage, target }) {
     const handlePokedexButton = () => {

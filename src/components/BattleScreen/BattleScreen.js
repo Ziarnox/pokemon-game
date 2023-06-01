@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './BattleScreen.css';
-import ultraDimonImg from './UltraDimon.png';
+import ultraDimonImg from '../../assets/UltraDimon.png';
 
 function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon, setOwnedPokemons, ownedPokemons, setSelectedPokemon }) {
     const [playerStats, setPlayerStats] = useState(Object.assign({}, selectedPokemon.stats));
@@ -97,7 +97,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
         handleEnemyTurn();
     }
 
-    const handleAutoBattleButton = () => {
+    const handleInstantWin = () => {
         while (playerStats.hp > 0 && enemyStats.hp > 0) {
             handleAttackButton();
         }
@@ -126,7 +126,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
                 <button className='attack-button' onClick={handleAttackButton} disabled={isPlayerTurn === false}>Attack</button>
                 <button className='escape-button' onClick={returnToMainPage}>Escape</button>
                 {
-                    <button className='autobattle-button' onClick={handleAutoBattleButton}>Dev Cheat</button>
+                    <button className='cheat-button' onClick={handleInstantWin}>Dev Cheat</button>
                 }
 
             </div>

@@ -7,7 +7,7 @@ import PokedexDisplay from './components/Pokedex/PokedexDisplay/PokedexDisplay';
 import BattleScreen from './components/BattleScreen/BattleScreen';
 import BackToMapButton from './components/Pokedex/BackToMapButton/BackToMapButton';
 import BackToBattleButton from './components/Pokedex/BackToBattleButton/BackToBattleButton';
-import dimonImg from './Dimon.png';
+import dimonImg from './assets/Dimon.png';
 
 
 function App() {
