@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './BattleScreen.css';
+import ultraDimonImg from './UltraDimon.png';
 
 function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon, setOwnedPokemons, ownedPokemons, setSelectedPokemon }) {
     const [playerStats, setPlayerStats] = useState(Object.assign({}, selectedPokemon.stats));
@@ -11,7 +12,6 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
     const [playerAttack, setPlayerAttack] = useState(calculateAttackValue(playerStats.attack, playerStats.defense));
     const [enemyAttack, setEnemyAttack] = useState(calculateAttackValue(enemyStats.attack, enemyStats.defense));
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-    const [isAutoBattleOn, setIsAutoBattleOn] = useState(false);
 
     const returnToMainPage = () => {
         setPage("main");
@@ -34,10 +34,10 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
             stats: {
                 hp: enemyDetails.stats[0]["base_stat"],
                 attack: enemyStats.attack,
-                defense: enemyStats.defense
+                defense: enemyStats.defense,
+                level: 1
             },
             img: enemyDetails.sprites["front_default"],
-            level: 1
         }
         setOwnedPokemons([...ownedPokemons, ...[objectToPush]]);
     }
@@ -45,17 +45,15 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
     const lvlUP = () => {
         const index = ownedPokemons.findIndex(element => element.name === selectedPokemon.name);
         const copiedPokemonsArr = [...ownedPokemons];
-        console.log(selectedPokemon.stats.hp, selectedPokemon.stats.hp * 1.1, Math.round(selectedPokemon.stats.hp * 1.1))
-        copiedPokemonsArr[index] = {
-            name: selectedPokemon.name,
-            stats: {
-                hp: Math.round(selectedPokemon.stats.hp * 1.1),
-                attack: Math.round(selectedPokemon.stats.attack * 1.1),
-                defense: Math.round(selectedPokemon.stats.defense * 1.1)
-            },
-            img: selectedPokemon.img,
-            level: selectedPokemon.level ++
-        } 
+        copiedPokemonsArr[index].stats =
+        {
+            hp: Math.round(selectedPokemon.stats.hp * 1.1),
+            attack: Math.round(selectedPokemon.stats.attack * 1.1),
+            defense: Math.round(selectedPokemon.stats.defense * 1.1),
+            level: selectedPokemon.stats.level + 1
+        }
+        copiedPokemonsArr[0].img = ownedPokemons[0].stats.level < 5 ? ownedPokemons[0].img : ultraDimonImg;
+        copiedPokemonsArr[0].name = ownedPokemons[0].stats.level < 5 ? ownedPokemons[0].name : "Ultra Dimon";
         setOwnedPokemons(copiedPokemonsArr);
     }
 
@@ -69,8 +67,8 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
                     setEnemyStats(Object.assign(enemyStats, { hp: 0 }));
                     setTimeout(() => {
                         setPage("won_battle")
-                        addPokemonToCollection();
                         lvlUP();
+                        addPokemonToCollection();
                     }, 500);
                 }
             }
@@ -100,11 +98,8 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
     }
 
     const handleAutoBattleButton = () => {
-        setIsAutoBattleOn(!isAutoBattleOn);
-        while (isAutoBattleOn && playerStats.hp > 0 && enemyStats.hp > 0) {
-            setAttackValues();
-            handlePlayerTurn();
-            handleEnemyTurn();
+        while (playerStats.hp > 0 && enemyStats.hp > 0) {
+            handleAttackButton();
         }
     }
 
@@ -115,7 +110,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
             <div className='pokemons-fight-details flex-row-center-center'>
                 <div className='pokemon-details flex-row-center-center'>
                     <div className='pokemon-battle-name'>{selectedPokemon.name}</div>
-                    <div className='pokemon-battle-level'>Lvl {selectedPokemon.level}</div>
+                    <div className='pokemon-battle-level'>Lvl {selectedPokemon.stats.level}</div>
                     <img className='battle-picture' src={selectedPokemon.img} alt={selectedPokemon.name} />
                     <div className='health-bar'>{playerStats.hp}/{selectedPokemon.stats.hp} HP</div>
                 </div>
@@ -131,9 +126,7 @@ function BattleScreen({ enemyDetails, setPage, setEnemyDetails, selectedPokemon,
                 <button className='attack-button' onClick={handleAttackButton} disabled={isPlayerTurn === false}>Attack</button>
                 <button className='escape-button' onClick={returnToMainPage}>Escape</button>
                 {
-                    isAutoBattleOn
-                        ? <button className='autobattle-button' onClick={handleAutoBattleButton}>Turn auto-battle off</button>
-                        : <button className='autobattle-button' onClick={handleAutoBattleButton}>Turn auto-battle on</button>
+                    <button className='autobattle-button' onClick={handleAutoBattleButton}>Dev Cheat</button>
                 }
 
             </div>

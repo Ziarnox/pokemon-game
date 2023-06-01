@@ -22,10 +22,10 @@ function App() {
       stats: {
         hp: 50,
         attack: 50,
-        defense: 50
+        defense: 50,
+        level: 1
       },
       img: dimonImg,
-      level: 1
     }
   ]);
   const [selectedPokemon, setSelectedPokemon] = useState(ownedPokemons[0]);
