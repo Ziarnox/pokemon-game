@@ -51,35 +51,37 @@ function App() {
       case "main":
         return (
           <div className='main_page flex-row-center-center'>
-            {
-              <>
+            <>
+              <div className='main-page-header'>Pick Location</div>
+              <div className='pokedex-bar flex-row-center-center'>
                 <GoToPokedexButton setPage={setPage} target="Pokedex" />
                 <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
-                <div className='main-page-header'>Pick Location</div>
-                <div className='locations_container flex-row-center-center'>
-                  {locations.map((element, index) =>
-                    <Location key={"location" + index}
-                      name={element.name}
-                      setPage={setPage}
-                      url={element.url}
-                      setPokemonURL={setPokemonURL}
-                      setHasPokemons={setHasPokemons}
-                    />)}
-                </div>
-              </>
-            }
+              </div>
+              <div className='locations_container flex-row-center-center'>
+                {locations.map((element, index) =>
+                  <Location key={"location" + index}
+                    name={element.name}
+                    setPage={setPage}
+                    url={element.url}
+                    setPokemonURL={setPokemonURL}
+                    setHasPokemons={setHasPokemons}
+                  />)}
+              </div>
+            </>
           </div>);
       case "encounter":
         return (
-          <>
-            <GoToPokedexButton setPage={setPage} target="encounterPokedex" />
-            <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
+          <div className='encounter-page flex-row-center-center'>
             <EncounterCard setPage={setPage}
               pokemonURL={pokemonURL}
               hasPokemons={hasPokemons}
               enemyDetails={enemyDetails}
               setEnemyDetails={setEnemyDetails} />
-          </>
+                          <div className='pokedex-bar flex-row-center-center'>
+              <GoToPokedexButton setPage={setPage} target="encounterPokedex" />
+              <img className='current-pokemon-image' src={selectedPokemon.img} alt={selectedPokemon.name} />
+            </div>
+          </div>
         );
       case "Pokedex":
         return (

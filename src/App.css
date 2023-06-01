@@ -90,3 +90,21 @@ img{
   border: none;
   color: rgb(255, 166, 0);
 }
+
+@media screen and (max-device-width: 1300px) {
+    .pokedex-bar{
+      flex-flow: row;
+      gap: 2em
+    }
+
+    .current-pokemon-image{
+      position: static;
+    }
+
+    .encounter-page{
+      margin-top: 1em;
+      flex-flow: column;
+      gap: 2em;
+    }
+
+  }

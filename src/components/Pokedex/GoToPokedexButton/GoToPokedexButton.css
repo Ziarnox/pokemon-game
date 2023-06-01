@@ -1,4 +1,4 @@
-.goToPokedex{
+.goToPokedex {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -7,8 +7,13 @@
     border: 0;
 }
 
-.goToPokedex > img{
+.goToPokedex>img {
     width: 10em;
     height: 10em;
 }
 
+@media screen and (max-device-width: 1300px) {
+    .goToPokedex {
+        position: static;
+    }
+}
